@@ -1,10 +1,10 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect} from 'react';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactsList } from '../ContactsList/ContactsList';
 import { Filter } from '../Filter/Filter';
 import { AppWrapper } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact, deleteContact, setFilter } from 'Redux/ContactsSlise';
+import { setFilter } from 'Redux/ContactsSlise';
 // import {ContactSlice} from 'Redux/ContactsSlise';
 
 
