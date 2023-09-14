@@ -67,7 +67,7 @@ console.log(selectedContact);
   return (
     <AppWrapper>
       <ContactForm addContact={addContact} />
-      <p>{JSON.stringify(reduxContacts)}</p>
+      {/* <p>{JSON.stringify(reduxContacts)}</p> */}
       <Filter filters={filters} newContact={handleFilterChange} />
       <ContactsList selectedContact={reduxContacts} deleteContact={deleteContactItem} />
     </AppWrapper>
