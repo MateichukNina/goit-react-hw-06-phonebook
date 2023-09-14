@@ -11,7 +11,7 @@ import { setFilter } from 'Redux/ContactsSlise';
 
 export const App = () => {
   const contacts = useSelector((state) => state.contacts);
-  const filter = useSelector((state) => state.filter);
+  const filters = useSelector((state) => state.filters);
   const dispatch = useDispatch();
 
   // const [contacts, setContacts] = useState(() => {
@@ -53,11 +53,11 @@ export const App = () => {
   };
 
 
-  const selectedContact = filter
-    ? contacts.filter(({ name }) =>
-        name.toLowerCase().includes(filter.toLowerCase())
-      )
-    : contacts;
+  const selectedContact = filters
+  ? contacts.contacts.filter(({ name }) => 
+      name.toLowerCase().includes(filters.toLowerCase())
+    )
+  : [...contacts.contacts];
 
 
     useEffect(() => {
@@ -69,7 +69,7 @@ export const App = () => {
     <AppWrapper>
       <ContactForm addContact={addContact} />
       <p>{JSON.stringify(contacts)}</p>
-      <Filter filter={filter} newContact={handleFilterChange} />
+      <Filter filters={filters} newContact={handleFilterChange} />
       <ContactsList selectedContact={selectedContact} deleteContact={deleteContact} />
     </AppWrapper>
   );

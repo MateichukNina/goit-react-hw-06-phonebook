@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Item, List, DeleteBtn } from './ContactsList.styled';
-// import { useSelector } from 'react-redux';
+
 
 
 export const ContactsList = ({selectedContact, deleteContact}) => {

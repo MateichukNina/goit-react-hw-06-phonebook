@@ -9,6 +9,8 @@ import {
     StyledLable,
     Button,
   } from './ContactForm.styled';
+  import { addContact } from 'Redux/ContactsSlise';
+  import { useDispatch } from 'react-redux';
 
 
 
@@ -17,9 +19,11 @@ const ContactSchema = Yup.object().shape({
     number: Yup.string().min(6).max(10).required(''),
 })
 
-export const ContactForm = ({addContact}) => {
+export const ContactForm = () => {
+
+    const dispatch = useDispatch();
     const handleAddContact = (values, { resetForm }) => {
-        addContact({...values, id: nanoid() });
+        dispatch(addContact({ ...values, id: nanoid() }));
         resetForm();
         
     };
