@@ -11,7 +11,7 @@ export const Filter = ({ filter, newContact }) => {
         placeholder="Search..."
         type="text"
         name="filter"
-        value={filter || ''}
+        value={filter}
         onChange={newContact}
       />
     </FilterInput>

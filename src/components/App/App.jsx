@@ -1,19 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactsList } from '../ContactsList/ContactsList';
 import { Filter } from '../Filter/Filter';
 import { AppWrapper } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
+import { useCallback } from 'react';
 import { setFilter } from 'Redux/FilterSlice';
- import { deleteContact } from 'Redux/ContactsSlise';
+import { deleteContact, addContact } from 'Redux/ContactsSlise';
 
 // import {ContactSlice} from 'Redux/ContactsSlise';
 
-
-
 export const App = () => {
-  const reduxContacts = useSelector((state) => state.contacts);
-  const filters = useSelector((state) => state.filters);
+  const reduxContacts = useSelector(state => state.contacts.items);
+  const filters = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
   // const [contacts, setContacts] = useState(() => {
@@ -23,25 +22,35 @@ export const App = () => {
   //   }
   //   return [];
   // });
-
- 
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem('reduxContacts'));
+    if (savedContacts) {
+      dispatch(addContact(savedContacts));
+    }
+  }, [dispatch]);
 
   // const addContact = newContact => {
   //   setContacts(prevContacts => [...prevContacts, newContact]);
   // };
 
-  const addContact = (newContact) => {
-    dispatch(addContact(newContact));
-  };
+
+  
+
+  const addContactNew = useCallback(
+    newContact => {
+      dispatch(addContact(newContact));
+    },
+    [dispatch]
+  );
 
   // const handleFilterChange = evt => {
   //   const search = evt.currentTarget.value;
   //   setFilter(search);
   // };
-  
 
-  const handleFilterChange = (evt) => {
+  const handleFilterChange = evt => {
     dispatch(setFilter(evt.currentTarget.value));
+
   };
 
   // const deleteContact = contactId => {
@@ -50,26 +59,33 @@ export const App = () => {
   //   );
   // };
 
-  const deleteContactItem = (contactId) => {
+  const deleteContactItem = contactId => {
     dispatch(deleteContact(contactId));
   };
 
-
   const selectedContact = filters
-  ? reduxContacts.filter(({ name }) => 
-      name.toLowerCase().includes(filters.toLowerCase())
-    )
-  : [];
+    ? reduxContacts.filter(({ name }) =>
+        name.toLowerCase().includes(filters.toLowerCase())
+      )
+    : reduxContacts;
 
-console.log(selectedContact);
-  
+  // const selectedContact = reduxContacts.filter(({ name }) =>
+  //   name.toLowerCase().includes(filters.toLowerCase())
+  // );
+
+  console.log('filters:', filters);
+  console.log('selectedContact:', selectedContact);
+  console.log(reduxContacts);
 
   return (
     <AppWrapper>
-      <ContactForm addContact={addContact} />
+      <ContactForm addContact={addContactNew} />
       {/* <p>{JSON.stringify(reduxContacts)}</p> */}
-      <Filter filters={filters} newContact={handleFilterChange} />
-      <ContactsList selectedContact={reduxContacts} deleteContact={deleteContactItem} />
+      <Filter filter={filters} newContact={handleFilterChange} />
+      <ContactsList
+        selectedContact={selectedContact}
+        deleteContact={deleteContactItem}
+      />
     </AppWrapper>
   );
 };
