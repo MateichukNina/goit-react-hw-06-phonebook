@@ -5,7 +5,7 @@ import { Item, List, DeleteBtn } from './ContactsList.styled';
 
 export const ContactsList = ({selectedContact, deleteContact}) => {
   // const myContacts = useSelector(state => state.contacts)
-
+  
   return (
     <List><ul>
     {selectedContact.map(contact => {
