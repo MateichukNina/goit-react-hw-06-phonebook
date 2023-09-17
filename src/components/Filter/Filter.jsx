@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+
 import {FilterInput, Input} from './Filter.styled';
 
 export const Filter = ({ filter, newContact }) => {
@@ -18,7 +18,3 @@ export const Filter = ({ filter, newContact }) => {
   );
 };
 
-Filter.propTypes = {
-  filter: PropTypes.string,
-  newContact: PropTypes.func.isRequired,
-};

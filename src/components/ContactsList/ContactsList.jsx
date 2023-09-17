@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types';
+
 import { Item, List, DeleteBtn } from './ContactsList.styled';
 
 
@@ -21,13 +21,3 @@ export const ContactsList = ({selectedContact, deleteContact}) => {
   )
 }
 
-
-ContactsList.propTypes = {
-  selectedContact: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-};

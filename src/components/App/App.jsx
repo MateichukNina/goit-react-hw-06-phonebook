@@ -4,9 +4,9 @@ import { ContactsList } from '../ContactsList/ContactsList';
 import { Filter } from '../Filter/Filter';
 import { AppWrapper } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { useCallback } from 'react';
+// import { useCallback } from 'react';
 import { setFilter } from 'Redux/FilterSlice';
-import { deleteContact, addContact } from 'Redux/ContactsSlise';
+import { deleteContact} from 'Redux/ContactsSlise';
 
 // import {ContactSlice} from 'Redux/ContactsSlise';
 
@@ -39,12 +39,12 @@ export const App = () => {
 
   
 
-  const addContactNew = useCallback(
-    newContact => {
-      dispatch(addContact(newContact));
-    },
-    [dispatch]
-  );
+  // const addContactNew = useCallback(
+  //   newContact => {
+  //     dispatch(addContact(newContact));
+  //   },
+  //   [dispatch]
+  // );
 
   // const handleFilterChange = evt => {
   //   const search = evt.currentTarget.value;
@@ -76,13 +76,11 @@ export const App = () => {
   //   name.toLowerCase().includes(filters.toLowerCase())
   // );
 
-  console.log('filters:', filters);
-  console.log('selectedContact:', selectedContact);
-  console.log(reduxContacts);
+
 
   return (
     <AppWrapper>
-      <ContactForm addContact={addContactNew} />
+      <ContactForm />
       {/* <p>{JSON.stringify(reduxContacts)}</p> */}
       <Filter filter={filters} newContact={handleFilterChange} />
       <ContactsList
