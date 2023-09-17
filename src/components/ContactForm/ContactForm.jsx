@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import * as Yup from 'yup';
-import PropTypes from 'prop-types';
+
 import {
   StyledForm,
   StyledField,
@@ -52,6 +52,3 @@ export const ContactForm = () => {
   );
 };
 
-ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired,
-};

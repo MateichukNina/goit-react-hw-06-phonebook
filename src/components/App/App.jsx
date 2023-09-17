@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactsList } from '../ContactsList/ContactsList';
 import { Filter } from '../Filter/Filter';
@@ -22,12 +22,15 @@ export const App = () => {
   //   }
   //   return [];
   // });
-  useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem('reduxContacts'));
-    if (savedContacts) {
-      dispatch(addContact(savedContacts));
-    }
-  }, [dispatch]);
+  // useEffect(() => {
+  //   const savedContacts = JSON.parse(localStorage.getItem('reduxContacts'));
+  //   if (savedContacts) {
+  //     const existingContacts = reduxContacts.length > 0;
+  //     if (!existingContacts) {
+  //       dispatch(addContact(savedContacts));
+  //     }
+  //   }
+  // }, [dispatch, reduxContacts]);
 
   // const addContact = newContact => {
   //   setContacts(prevContacts => [...prevContacts, newContact]);

@@ -21,8 +21,8 @@ const persistConfig = {
   storage,
 };
 
-export const persistedContactsReducer = persistReducer(
-  persistConfig,
+ export const persistedContactsReducer = persistReducer(
+   persistConfig,
   contactReducer
 );
 
