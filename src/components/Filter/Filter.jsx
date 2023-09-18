@@ -1,15 +1,15 @@
-
 import { FilterInput, Input } from './Filter.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { setFilter } from 'Redux/FilterSlice'; 
+import { setFilter } from 'Redux/FilterSlice';
 
 export const Filter = () => {
-  const filter = useSelector(state => state.filter);
+  const filter = useSelector(state => state.filter || '');
   const dispatch = useDispatch();
 
   const handleFilterChange = evt => {
     dispatch(setFilter(evt.currentTarget.value));
   };
+
 
   return (
     <FilterInput>
@@ -18,7 +18,6 @@ export const Filter = () => {
       <Input
         placeholder="Search..."
         type="text"
-        name="filter"
         value={filter}
         onChange={handleFilterChange}
       />
